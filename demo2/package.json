@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "build-prod": "NODE_ENV=production npm run build",
+    "build": "webpack src/index.js bundle.js",
+    "clean": "rimraf *bundle*",
+    "beauty": "js-beautify bundle.js > bundle.pretty.js"
+  },
+  "devDependencies": {
+    "js-beautify": "^1.6.11",
+    "rimraf": "^2.6.1",
+    "webpack": "^2.2.1"
+  }
+}

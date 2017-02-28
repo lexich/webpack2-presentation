@@ -1,0 +1,25 @@
+.base-menu {
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.base-menu > ul {
+  display: inline-block;
+  padding: 0;
+}
+
+.base-menu > ul > li {
+  float: left;
+  list-style: none;
+  margin: 0 15px;
+}
+
+.base-menu a {
+  color: white;
+  font-size: 20px;
+}
+
+.base-menu a:hover {
+  color: #fe4918;
+}
