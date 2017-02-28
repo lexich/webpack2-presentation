@@ -1,1 +1,0 @@
-module.exports = 'Ensure syntax';

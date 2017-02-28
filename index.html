@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Пора заводить Webpack 2</title>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen-16x10.css">
+	<link rel="stylesheet" href="./default.min.css">
+	<style>		
+		.slide h2 {
+			margin-bottom: 20px;
+			text-align: center;
+		}
+		.slide pre code {
+			margin-left: 0;
+			padding: 0;
+			font-size: 16px;
+			line-height: 150%;
+		}
+		.code-highlight {
+			background: rgba(255, 255, 0, 0.3);
+		}
+	</style>
+</head>
+<body class="shower list">
+	<header class="caption">
+		<h1>Пора заводить Webpack 2</h1>
+		<p>Yours Truly, Famous Inc.</p>
+	</header>
+	<section class="slide" id="cover">
+		<h2>Пора заводить Webpack 2!</h2>
+		<p><a href="http://lexich.ru">Ефремов Алексей</a></p>
+		<img src="img/base.jpg" alt="" class="cover">
+		<span class='cover-title'>webpack 2</span>
+		<!--
+			To apply styles to the certain slides
+			set slide ID to get needed elements
+			-->
+		<style>
+			#cover {
+				background: black;
+			}
+			#cover h2 {
+				margin:50px 240px 0;
+				color:#e72d32;
+				text-align:center;
+				font-size:40px;
+			}
+			#cover p {
+				margin:10px 0 0;
+				text-align:center;
+				color:#FFF;
+				font-style:italic;
+				font-size:20px;
+			}
+			#cover p a {
+				color:black;
+				position: absolute;
+				bottom: 23%;
+				right: 20px;
+			}
+			#cover img {
+				width: 100%;
+			}
+			#cover .cover-title {
+				position: absolute;
+				bottom: 28.5%;
+				right: 35.4%;
+				text-transform: uppercase;
+				font-size: 17px;
+			    transform: rotate(-3deg);
+			}
+		</style>
+	</section>
+	<section id="snowArea" class="slide">
+		<center>
+		<h2 id="snowHell">
+			JavaScript - новый php.
+		</h2>
+		<br><br>
+		<img id="snowBtn" src="img/js.png" alt="" width="150">
+		</center>
+		<img id="hellPig" src="img/hellpig.jpg" width="200" style="float: right;display: none;" alt="">
+
+
+	</section>
+
+	<section class="slide">
+		<h2 style="text-align: center;font-size: 40px">			
+			<img src="img/webpack.png" alt="" width="150">
+			<br><br><br>
+			<p>Webpack is a module bundler for modern JavaScript applications</p>
+			<a class="note" href="https://webpack.js.org">https://webpack.js.org</a>
+			
+		</h2>		
+	</section>
+	<section class="slide">
+		<h2>4 главные концепции webpack</h2>
+		<ol>
+			<li class="next">Entry</li>
+			<li class="next">Output</li>
+			<li class="next">Loaders</li>
+			<li class="next">Plugins</li>
+		</ol>
+	</section>
+	<section class="slide">
+	<h2>Entry</h2>
+	<pre>
+		<code class="javascript">
+		module.exports = {
+<span class="code-highlight">		  entry: './path/to/my/entry/file.js'</span>
+		};
+		</code>
+	</pre>
+	</section>
+	<section class="slide">
+		<h2>Output</h2>
+		<pre>
+		<code class="javascript">
+		const path = require('path');
+		module.exports = {
+		  entry: './path/to/my/entry/file.js',
+<span class="code-highlight">		  output: {
+		    path: path.resolve(__dirname, 'dist'),
+		    filename: 'my-first-webpack.bundle.js'
+		  }</span>
+		};
+		</code>
+		</pre>
+	</section>
+	<section class="slide">
+		<h2>Loaders</h2>
+		<pre>
+		<code class="javascript">
+		const path = require('path');
+		module.exports = {
+		  entry: './path/to/my/entry/file.js',
+		  output: {
+		    path: path.resolve(__dirname, 'dist'),
+		    filename: 'my-first-webpack.bundle.js'
+		  },
+<span class="code-highlight">		  module: {
+		    rules: [
+				{test: /\.css$/, use: ['style-loader', 'css-loader']}
+		    ]
+		  }</span>
+		};
+		</code>
+		</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Plugins</h2>
+		<pre>
+		<code class="javascript">		
+		const webpack = require('webpack'); //to access built-in plugins
+		const path = require('path');
+		module.exports = {
+		  entry: './path/to/my/entry/file.js',
+		  output: {
+		    path: path.resolve(__dirname, 'dist'),
+		    filename: 'my-first-webpack.bundle.js'
+		  },
+		  module: {
+		    rules: [
+		      { test: /\.css$/, use: ['style-loader', 'css-loader'] }
+		    ]
+		  },
+<span class="code-highlight">		  plugins: [
+		    new webpack.optimize.UglifyJsPlugin()		    
+		  ]</span>
+		};
+		</code>
+		</pre>
+	</section>
+
+	<section class="slide">		
+		<h2>Модульность в webpack</h2>
+		<center>
+			<img src="./img/teawithsweets.jpg" width="600" alt="Модульность в webpack">	
+		</center>
+		
+	</section>
+
+	<section class="slide">		
+		<h2>Commonjs</h2>
+		<pre><code class="javascript">			
+			var commonjs = require('./_commonjs');
+
+			//_common.js
+			module.exports = "Hello Common JS";
+		</code></pre>
+	</section>
+
+	<section class="slide">		
+		<h2>Amd</h2>
+		<pre><code class="javascript">			
+			var amd = require('./_amd');
+
+			//_amd.js
+			define([], function() {
+				return "Hello AMD";
+			});
+		</code></pre>
+	</section>
+
+	<section class="slide">		
+		<h2>ES6 modules</h2>
+		<pre><code class="javascript">			
+			import es6 from './_es6';
+
+			//_es6.js
+			export default "Hello ES6-modules";
+		</code></pre>
+	</section>
+
+	<section class="slide">		
+		<h2>require.ensure</h2>
+		<pre><code class="javascript">			
+			var ensurePromise = new Promise(function(resolve) { 
+<span class="code-highlight">				require.ensure(['./_ensure'], function(require) {
+					var data = require('./_ensure');
+					resolve(data);
+				});</span>
+			});
+
+			//_ensure.js
+			module.exports = 'Ensure syntax';
+		</code></pre>
+	</section>
+
+	<section class="slide">		
+		<h2>Async import</h2>
+		<pre><code class="javascript">			
+			const importStatic = import('./_import');
+
+			//_import.js
+			export default "Import syntax";
+		</code></pre>
+	</section>
+
+	<section class="slide">		
+		<h2>require.context</h2>
+		<pre><code class="javascript">			
+			var context = require.context('./', false, /(import|ensure)\.js$/);
+
+			context.keys().forEach(function(key){
+				context(key);
+			});
+		</code></pre>
+	</section>
+
+	<section class="slide">		
+		<h2>Dynamic import</h2>
+		<pre><code class="javascript">			
+			const moduleName = '_import';
+			const dynamicImport = import('./' + moduleName);
+		</code></pre>
+	</section>
+
+	<section class="slide">
+		<center>	
+			<h2>Демо</h2>
+			<img src="img/petr.png" alt="Demo 1" />
+		</center>
+	</section>
+
+	<section class="slide">
+		<center>
+			<h2>Итого</h2>
+		</center>
+		<ol>
+			<li class="next active">Поддержка es6 из коробки</li>				
+			<li class="next">Tree shaking</li>
+			<li class="next">Улучшенный config `module.loaders` => `module.rules` и т.д.</li>			
+			<li class="next">
+				<a class="note" href="https://webpack.js.org/guides/migrating/">https://webpack.js.org/guides/migrating/<a>	
+			</li>
+		</ol>
+	</section>
+
+	<section class="slide" id="questions">
+		<h2>Вопросы?!</h2>
+		<img src="img/finish.jpg" alt="" class="cover">
+		<style>
+			#questions {
+				background: black;
+			}
+			#questions h2 {
+				margin-top: 120px;
+				text-align: center;
+				color: #ee332e;
+			}
+		</style>
+	</section>
+
+	<p class="badge">
+		<a href="https://github.com/shower/shower">Fork me on GitHub</a>
+	</p>
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"></div>
+	<script src="shower/shower.min.js"></script>
+	<!-- Copyright © 2015 Yours Truly, Famous Inc. -->
+	<!-- Photos by John Carey, fiftyfootshadows.net -->
+	<script src="./highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="./snow.js"></script>
+    <script>
+		(function() {
+			if (!SnowAnimation) { return; }
+
+			var el = document.getElementById('snowBtn');
+			if (!el) { return; }
+			var open = true;
+			var animation = new SnowAnimation(document.getElementById('snowArea'));
+			el.addEventListener('click', function() {
+				if (open) {
+					animation.start();
+				} else {
+					animation.stop();
+				}
+				open = !open;
+			});
+
+			var hell = document.getElementById('snowHell');
+			var styleEl = document.createElement('style');
+			styleEl.innerHTML = 
+				'.snow-item{ color: red!important; }'+
+				'#snowArea::before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(255, 0, 0, 0.5);}' + 
+				'#snowArea * {z-index: 1000;position: relative;}' + 
+				'#hellPig{display: block!important;}';
+			var isHell = true;
+			hell.addEventListener('click', function() {
+				if (isHell) {
+					document.body.appendChild(styleEl);				
+				} else {
+					styleEl.remove();
+				}
+				isHell = !isHell;
+			});
+		})();		
+	</script>
+</body>
+</html>

@@ -1,1 +1,0 @@
-export default "Hello ES6-modules";
